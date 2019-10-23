@@ -35,7 +35,6 @@ class Depot(models.Model):
 
     def __str__(self):
         return self.CodeDepot
-
     class Meta:
         ordering = ('CodeDepot',)
 
@@ -44,7 +43,12 @@ class Stock(models.Model):
     Reference = models.ForeignKey(Articles, on_delete=models.CASCADE)
     QteEnStock = models.IntegerField()
     SeuilStock = models.IntegerField()
-
+    def __str__(self):
+        return self.Reference
+    #def __str__(self):
+     #   return self.QteEnStock
+    #def __str__(self):
+     #   return self.SeuilStock
     class Meta:
         unique_together = ['CodeDepot', 'Reference']
 
