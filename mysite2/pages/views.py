@@ -1,14 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render , get_object_or_404
 from django.http import HttpResponse
 # Create your views here.
 from pages.models import Page
+from .forms import ContactForm
 
-
+def contact(request):
+    submitted = False
+    if request.method =='POST':
+        form = ContactForm(request.POST)
+        if form.isvalid():
+            cd=form.cleaned_data
+            # assert False
+            return HttpResponseRedirect('/contact/contact?submitted=True')
+    else:
+        form = ContactForm()
+        if 'submitted' in request.GET:
+            submitted = True
+            pass
+    return render(request,'pages/contact.html',{'form':form,page_list: Page.objects.all(),'submitted' :submitted})
 def index(request, pagename):
-    """ Exemple de page non valide au niveau HTML pour que l'exemple soit concis """
-    #return HttpResponse(""" <h1>Bienvenue au site de GLASSRI !</h1> <p>JARID Chaimae !</p> """)
-    #return render(request, "base.html")
-    #return render(request, "pages/page.html")
     pagename = '/' + pagename
     pg       = Page.objects.get(permalink=pagename)
     context  = {

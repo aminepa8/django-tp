@@ -1,0 +1,23 @@
+{% extends "pages/page.html"%}
+
+{% block title%}Contact Us{endblock title}
+{% block content%}
+<h1>Contact Us</h1>
+
+{% if submitted %}
+    <p class="success">
+        Your message was submitted successfully. Thank you.
+    </p>
+{% else %}
+<form action="" method="post" novalidate>
+    <table>
+        {{ forms.as_table}}
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type = "submit" value="Submit"></td>
+        </tr>
+    </table>
+    {% crsf_token %}
+</form>    
+{% endif %}
+{% endblock content %}
