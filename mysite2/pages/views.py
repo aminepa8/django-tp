@@ -21,7 +21,8 @@ def contact(request):
 
 def index(request, pagename):
     pagename = '/' + pagename
-    pg       = Page.objects.get(permalink=pagename)
+    #pg       = Page.objects.get(permalink=pagename)
+    pg = get_object_or_404(Page, permalink=pagename)
     context  = {
         'title'        : pg.title,
         'content'      : pg.bodytext,
