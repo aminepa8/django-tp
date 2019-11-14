@@ -1,7 +1,7 @@
 {% extends "pages/page.html"%}
 
-{% block title%}Contact Us{endblock title}
-{% block content%}
+{% block title%} Contact Us{% endblock title %}
+{% block content %}
 <h1>Contact Us</h1>
 
 {% if submitted %}
@@ -11,13 +11,13 @@
 {% else %}
 <form action="" method="post" novalidate>
     <table>
-        {{ forms.as_table}}
+        {{ form.as_table}}
         <tr>
             <td>&nbsp;</td>
             <td><input type = "submit" value="Submit"></td>
         </tr>
     </table>
-    {% crsf_token %}
+    {% csrf_token %}
 </form>    
 {% endif %}
 {% endblock content %}
