@@ -18,6 +18,7 @@ def contact(request):
             submitted = True
             pass
     return render(request,'pages/contact.html',{'form':form,page_list: Page.objects.all(),'submitted' :submitted})
+
 def index(request, pagename):
     pagename = '/' + pagename
     pg       = Page.objects.get(permalink=pagename)
@@ -25,6 +26,7 @@ def index(request, pagename):
         'title'        : pg.title,
         'content'      : pg.bodytext,
         'last_updated' : pg.update_date,
+        'page_list'    :Page.objects.all(),
     }
     #assert False
     return render(request, 'pages/page.html', context)
