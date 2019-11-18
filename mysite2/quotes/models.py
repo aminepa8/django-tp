@@ -26,7 +26,7 @@ class Quote(models.Model):
     jobfile = models.FileField(upload_to='uploads/',blank=True)
     submitted = models.DateField(auto_now_add=True)
     quotedate = models.DateField(blank=True,null=True)
-    quotaprice = models.DecimalField(decimal_places=2,max_digits=7,blank=True,default=0)
+    quoteprice = models.DecimalField(decimal_places=2,max_digits=7,blank=True,default=0)
     username = models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
 
     def __str__(self):
